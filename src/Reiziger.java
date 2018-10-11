@@ -1,12 +1,17 @@
 public class Reiziger {
     private String name;
+    private int ticket;
 
-    public Reiziger(String name){
+    public Reiziger(String name, int ticket) {
         this.name = name;
-
-    }
-    public String getName(){
-        return this.name;
+        this.ticket = ticket;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getTicket() {
+        return ticket;
+    }
 }

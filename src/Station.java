@@ -1,25 +1,17 @@
-import java.util.Stack;
-
 public class Station {
 
-    private Stack<Reiziger> perron = new Stack<>();
+    private String name;
 
-    public void rijdtBinnen(Trein trein){
-        leegTrein(trein);
-        vulTrein(trein);
+    public Station(String name){
+        this.name = name;
     }
 
-    private void leegTrein(Trein trein){
-        for(String name: trein.getNames()){
-            Reiziger uitgestapte = trein.uitstappen(name);
-            perron.push(uitgestapte);
-        }
+    public void rijdtBinnen(){
+        System.out.println("De trein rijdt station " + name + " binnen.");
     }
 
-    private void vulTrein(Trein trein){
-        while(!perron.isEmpty()){
-            Reiziger opgestapelde = perron.pop();
-            trein.instappen(opgestapelde);
-        }
+    public void rijdtWeg(){
+        System.out.println("De trein verlaat station " + name + ".");
+        System.out.println(" ");
     }
 }

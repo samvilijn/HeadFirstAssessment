@@ -1,65 +1,90 @@
+import java.time.temporal.JulianFields;
+
 public class Main {
 
     public static void main(String[] args) {
+        //trein
+        Trein trein = new Trein();
 
         //station Goes
-        Station goes = new Station();
-        goes.rijdtBinnen(trein);
-        Wagon alfa = new Wagon();
+        Station goes  = new Station("Goes");
 
-        Reiziger lorena = new Reiziger("lorena");
-        Reiziger erik = new Reiziger("erik");
-        Reiziger bart = new Reiziger("bart");
-        Reiziger jacco = new Reiziger("jacco");
-        Reiziger gert = new Reiziger("gert");
-        Reiziger zwartrijder = new Reiziger("zwartrijder");
+        Wagon alpha = new Wagon("Alpha");
+        trein.koppelWagon(alpha);
 
-        trein.instappen(lorena, erik, bart, jacco, gert, zwartrijder);
+        Reiziger Lorena = new Reiziger("Lorena", 1 );
+        Reiziger Erik = new Reiziger("Erik", 2 );
+        Reiziger Bart = new Reiziger("Bart", 2 );
+        Reiziger Jacco = new Reiziger("Jacco", 2 );
+        Reiziger Gert = new Reiziger("Gert",2 );
+        Reiziger Henk = new Reiziger("Henk", 2);
+        Reiziger Zwartrijder = new Reiziger("Zwartrijder", 0 );
+
+
+        trein.instappen(Lorena);
+        trein.instappen(Erik);
+        trein.instappen(Bart);
+        trein.instappen(Jacco);
+        trein.instappen(Gert);
+        trein.instappen(Henk);
+        trein.instappen(Zwartrijder);
+
         trein.info();
-
+        goes.rijdtWeg();
 
         //station arnemuiden
-        Station arnemuiden = new Station();
-        arnemuiden.rijdtBinnen(trein);
-        Wagon beta = new Wagon();
+        Station arnemuiden = new Station("Arnemuiden");
+        arnemuiden.rijdtBinnen();
+        Wagon beta = new Wagon("Beta");
+        trein.koppelWagon(beta);
 
-        Reiziger jeffrey = new Reiziger("jeffrey");
-        Reiziger mariano = new Reiziger("mariano");
+        trein.relocate();
 
-        trein.instappen(jeffrey, mariano);
+        Reiziger Jeffrey = new Reiziger("Jeffrey", 2);
+        Reiziger Mariano = new Reiziger("Mariano", 2);
+
+        trein.instappen(Jeffrey);
+        trein.instappen(Mariano);
+
         trein.info();
+        arnemuiden.rijdtWeg();
+
+        trein.uitstappen(Zwartrijder);
 
         //station middelburg
-        Station middelburg = new  Station();
-        middelburg.rijdtBinnen(trein);
+        Station middelburg = new  Station("Middelburg");
+        middelburg.rijdtBinnen();
 
-        Reiziger julian = new Reiziger("julian");
+        Reiziger Julian = new Reiziger("Julian", 1);
 
-        trein.instappen(julian);
+        trein.instappen(Julian);
 
-
-        trein.uitstappen(zwartrijder);
         trein.info();
+
+        middelburg.rijdtWeg();
 
         //station vlissingen souburg
-        Station vlissingensouburg = new Station();
-        vlissingensouburg.rijdtBinnen(trein);
+        Station vlissingensouburg = new Station("Vlissingen-Souburg");
+        vlissingensouburg.rijdtBinnen();
 
-        trein.uitstappen(jeffrey, mariano);
+        trein.uitstappen(Jeffrey);
+        trein.uitstappen(Mariano);
         trein.info();
+        vlissingensouburg.rijdtWeg();
 
         //station vlissingen
-        Station vlissingen = new Station();
-        vlissingen.rijdtBinnen(trein);
+        Station vlissingen = new Station("Vlissingen");
+        vlissingen.rijdtBinnen();
 
-        trein.uitstappen(lorena, erik, bart, jacco, gert, julian);
-        trein.info();
-
+        trein.uitstappen(Lorena);
+        trein.uitstappen(Erik);
+        trein.uitstappen(Bart);
+        trein.uitstappen(Jacco);
+        trein.uitstappen(Gert);
+        trein.uitstappen(Henk);
+        trein.uitstappen(Julian);
 
         //wie zit er in de trein?
         trein.info();
-        trein.printNames();
-
-
     }
 }
