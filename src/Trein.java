@@ -49,7 +49,7 @@ public class Trein {
                 value.uitWagon(reiziger, "second");
             }
         }
-        if (reiziger.getName().equals("Zwartrijder")) {
+        if (reiziger.getTicket()==(0)) {
             System.out.println(reiziger.getName() + " is uit de trein gezet.");
             System.out.println(" ");
         } else {
