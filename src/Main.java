@@ -7,18 +7,18 @@ public class Main {
         Trein trein = new Trein();
 
         //station Goes
-        Station goes  = new Station("Goes");
+        Station goes = new Station("Goes");
 
         Wagon alpha = new Wagon("Alpha");
         trein.koppelWagon(alpha);
 
-        Reiziger Lorena = new Reiziger("Lorena", 1 );
-        Reiziger Erik = new Reiziger("Erik", 2 );
-        Reiziger Bart = new Reiziger("Bart", 2 );
-        Reiziger Jacco = new Reiziger("Jacco", 2 );
-        Reiziger Gert = new Reiziger("Gert",2 );
+        Reiziger Lorena = new Reiziger("Lorena", 1);
+        Reiziger Erik = new Reiziger("Erik", 2);
+        Reiziger Bart = new Reiziger("Bart", 2);
+        Reiziger Jacco = new Reiziger("Jacco", 2);
+        Reiziger Gert = new Reiziger("Gert", 2);
         Reiziger Henk = new Reiziger("Henk", 2);
-        Reiziger Zwartrijder = new Reiziger("Zwartrijder", 0 );
+        Reiziger Zwartrijder = new Reiziger("Zwartrijder", 0);
 
 
         trein.instappen(Lorena);
@@ -52,7 +52,7 @@ public class Main {
         trein.uitstappen(Zwartrijder);
 
         //station middelburg
-        Station middelburg = new  Station("Middelburg");
+        Station middelburg = new Station("Middelburg");
         middelburg.rijdtBinnen();
 
         Reiziger Julian = new Reiziger("Julian", 1);

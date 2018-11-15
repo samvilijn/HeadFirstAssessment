@@ -49,7 +49,36 @@ public class Trein {
                 value.uitWagon(reiziger, "second");
             }
         }
-        if (reiziger.getTicket()==(0)) {
+        zwartrijderOpzoeken(reiziger);
+    }
+
+    public int geefAantalZwartrijders(){
+
+        int aantalZwartrijders = 0;
+
+        for (Map.Entry<String, Wagon> wagon : wagons.entrySet()) {
+            Wagon value = wagon.getValue();
+
+            for (Map.Entry<String, Reiziger> reiziger : value.getFirst().entrySet()) {
+                Reiziger traveller = reiziger.getValue();
+                if (traveller.getTicket() == 0) {
+                    aantalZwartrijders++;
+                }
+            }
+
+            for (Map.Entry<String, Reiziger> reiziger : value.getSecond().entrySet()) {
+                Reiziger traveller = reiziger.getValue();
+                if (traveller.getTicket() == 0) {
+                    aantalZwartrijders++;
+                }
+            }
+        }
+
+        return aantalZwartrijders;
+    }
+
+    private void zwartrijderOpzoeken(Reiziger reiziger) {
+        if (reiziger.getTicket() == 0) {
             System.out.println(reiziger.getName() + " is uit de trein gezet.");
             System.out.println(" ");
         } else {
