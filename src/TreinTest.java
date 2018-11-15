@@ -67,4 +67,17 @@ public class TreinTest {
         //assert
         Assert.assertEquals(1,aantalReizigers);
     }
+    @org.junit.Test
+    public void treinZonderWagons() {
+        //arrange
+        Trein trein = new Trein();
+        trein.instappen(new Reiziger("Erik", 2));
+        trein.instappen(new Reiziger("Lorena", 1));
+
+
+        //act
+        int aantalReizigers = trein.getTotal();
+        //assert
+        Assert.assertEquals(0,aantalReizigers);
+    }
 }

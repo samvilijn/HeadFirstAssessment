@@ -13,8 +13,14 @@ public class Trein {
         System.out.println("Wagon " + wagon.getName() + " is aangekoppeld.");
         System.out.println(" ");
     }
+    private void checkWagonStatus(){
+        if (this.wagons.isEmpty()){
+            throw new IllegalStateException("Er is nog geen wagon gekoppeld");
+        }
+    }
 
     public void instappen(Reiziger reiziger) {
+        checkWagonStatus();
         if (reiziger.getTicket() == 1) {
             if (wagons.size() > 1) {
                 if (wagons.get("Alpha").getFirstTotal() < 3) {
