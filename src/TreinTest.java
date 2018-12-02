@@ -5,7 +5,7 @@ public class TreinTest {
     @org.junit.Test
     public void geefAantalZwartrijders() {
         //arrange
-        Trein trein = new Trein();
+        Trein trein = new Trein(new Station("Goes"));
         Wagon alpha = new Wagon("Alpha");
         trein.koppelWagon(alpha);
         Reiziger zwartrijder = new Reiziger("Patrick", 0);
@@ -24,7 +24,7 @@ public class TreinTest {
     @org.junit.Test
     public void geefAantalInstappen() {
         //arrange
-        Trein trein = new Trein();
+        Trein trein = new Trein(new Station("Goes"));
         Wagon alpha = new Wagon("Alpha");
         trein.koppelWagon(alpha);
         trein.instappen(new Reiziger("Erik", 2));
@@ -39,7 +39,7 @@ public class TreinTest {
     @org.junit.Test
     public void geefAantalEersteKlas() {
         //arrange
-        Trein trein = new Trein();
+        Trein trein = new Trein(new Station("Goes"));
         Wagon alpha = new Wagon("Alpha");
         trein.koppelWagon(alpha);
         trein.instappen(new Reiziger("Erik", 2));
@@ -55,7 +55,7 @@ public class TreinTest {
     @org.junit.Test
     public void geefAantalTweedeKlas() {
         //arrange
-        Trein trein = new Trein();
+        Trein trein = new Trein(new Station("Goes"));
         Wagon alpha = new Wagon("Alpha");
         trein.koppelWagon(alpha);
         trein.instappen(new Reiziger("Erik", 2));
@@ -67,17 +67,14 @@ public class TreinTest {
         //assert
         Assert.assertEquals(1,aantalReizigers);
     }
-    @org.junit.Test
+
+    @org.junit.Test(expected = IllegalStateException.class)
     public void treinZonderWagons() {
         //arrange
-        Trein trein = new Trein();
-        trein.instappen(new Reiziger("Erik", 2));
-        trein.instappen(new Reiziger("Lorena", 1));
-
+        Trein trein = new Trein(new Station("Goes"));
 
         //act
-        int aantalReizigers = trein.getTotal();
-        //assert
-        Assert.assertEquals(0,aantalReizigers);
+        trein.instappen(new Reiziger("Erik", 2));
+        trein.instappen(new Reiziger("Lorena", 1));
     }
 }

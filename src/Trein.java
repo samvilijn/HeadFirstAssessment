@@ -4,19 +4,40 @@ import java.util.Map;
 public class Trein {
 
     private HashMap<String, Wagon> wagons = new HashMap();
+	private Station huidigStation;
 
-    public Trein() {
+    public Trein(Station startStation) {
+		huidigStation = startStation;
     }
+	
+	public Station getStation() {
+		return huidigStation;
+	}
+	
+	public void rijdtBinnen(Station nieuwStation)
+	{
+		if (huidigStation != null)
+		{
+			throw new IllegalStateException("De trein is al in station " + huidigStation.getName());
+		}
+		huidigStation = nieuwStation;
+		huidigStation.rijdtBinnen();
+	}
+	
+	public void rijdtWeg()
+	{
+		if (huidigStation == null) {
+			throw new IllegalStateException("De trein is al onderweg");
+		}
+		huidigStation.rijdtWeg();
+		huidigStation = null;
+	}
+	
 
     public void koppelWagon(Wagon wagon) {
         wagons.put(wagon.getName(), wagon);
         System.out.println("Wagon " + wagon.getName() + " is aangekoppeld.");
         System.out.println(" ");
-    }
-    private void checkWagonStatus(){
-        if (this.wagons.isEmpty()){
-            throw new IllegalStateException("Er is nog geen wagon gekoppeld");
-        }
     }
 
     public void instappen(Reiziger reiziger) {
@@ -92,6 +113,9 @@ public class Trein {
         }
     }
 
+    /**
+     * reiziger herplaatsen
+     */
     public void relocate() {
         for (Map.Entry<String, Wagon> wagon : wagons.entrySet()) {
             Wagon value = wagon.getValue();
@@ -150,6 +174,12 @@ public class Trein {
             return wagons.get(name).getSecondTotal();
         } else {
             return 0;
+        }
+    }
+	
+    private void checkWagonStatus(){
+        if (this.wagons.isEmpty()){
+            throw new IllegalStateException("Er is nog geen wagon gekoppeld");
         }
     }
 }

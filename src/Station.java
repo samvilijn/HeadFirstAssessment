@@ -14,4 +14,8 @@ public class Station {
         System.out.println("De trein verlaat station " + name + ".");
         System.out.println(" ");
     }
+
+    public String getName() {
+        return name;
+    }
 }

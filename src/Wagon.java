@@ -36,12 +36,10 @@ public class Wagon {
     }
 
     public int getFirstTotal() {
-
         return first.size();
     }
 
     public int getSecondTotal() {
-
         return second.size();
     }
 

@@ -3,11 +3,11 @@ import java.time.temporal.JulianFields;
 public class Main {
 
     public static void main(String[] args) {
-        //trein
-        Trein trein = new Trein();
-
         //station Goes
         Station goes = new Station("Goes");
+		
+        //trein
+        Trein trein = new Trein(goes);
 
         Wagon alpha = new Wagon("Alpha");
         trein.koppelWagon(alpha);
@@ -30,11 +30,11 @@ public class Main {
         trein.instappen(Zwartrijder);
 
         trein.info();
-        goes.rijdtWeg();
+        trein.rijdtWeg();
 
         //station arnemuiden
         Station arnemuiden = new Station("Arnemuiden");
-        arnemuiden.rijdtBinnen();
+        trein.rijdtBinnen(arnemuiden);
         Wagon beta = new Wagon("Beta");
         trein.koppelWagon(beta);
 
@@ -47,13 +47,13 @@ public class Main {
         trein.instappen(Mariano);
 
         trein.info();
-        arnemuiden.rijdtWeg();
+        trein.rijdtWeg();
 
         trein.uitstappen(Zwartrijder);
 
         //station middelburg
         Station middelburg = new Station("Middelburg");
-        middelburg.rijdtBinnen();
+        trein.rijdtBinnen(middelburg);
 
         Reiziger Julian = new Reiziger("Julian", 1);
 
@@ -61,20 +61,20 @@ public class Main {
 
         trein.info();
 
-        middelburg.rijdtWeg();
+        trein.rijdtWeg();
 
         //station vlissingen souburg
         Station vlissingensouburg = new Station("Vlissingen-Souburg");
-        vlissingensouburg.rijdtBinnen();
+        trein.rijdtBinnen(vlissingensouburg);
 
         trein.uitstappen(Jeffrey);
         trein.uitstappen(Mariano);
         trein.info();
-        vlissingensouburg.rijdtWeg();
+        trein.rijdtWeg();
 
         //station vlissingen
         Station vlissingen = new Station("Vlissingen");
-        vlissingen.rijdtBinnen();
+        trein.rijdtBinnen(vlissingen);
 
         trein.uitstappen(Lorena);
         trein.uitstappen(Erik);
@@ -86,5 +86,21 @@ public class Main {
 
         //wie zit er in de trein?
         trein.info();
+		
+		//station rotterdam - exception - trein is in vlissingen
+		Station rotterdam = new Station("Rotterdam");
+		try {
+			trein.rijdtBinnen(rotterdam);
+		} catch (IllegalStateException e) {
+			System.out.println(e);			
+		}
+		
+		//exception - de trein mag niet twee keer onderweg zijn
+		trein.rijdtWeg();
+		try {
+			trein.rijdtWeg();
+		} catch (IllegalStateException e) {
+			System.out.println(e);
+		}
     }
 }
